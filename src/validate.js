@@ -1,4 +1,4 @@
-class ValidateResource {
+class ValidateRsr {
 
   static isValid(data, message = '') {
     const errorEmpty = ValidateResource.setAlert('empty', message);
@@ -38,4 +38,4 @@ class ValidateResource {
 
 }
 
-module.exports = ValidateResource;
+module.exports = ValidateRsr;
