@@ -1,7 +1,7 @@
 class ValidateRsr {
 
   static isValid(data, message = '') {
-    const errorEmpty = ValidateResource.setAlert('empty', message);
+    const errorEmpty = ValidateRsr.setAlert('empty', message);
 
     if (!data) {
       throw new Error(errorEmpty);
