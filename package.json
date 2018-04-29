@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/helderburato/node-rsr/issues"
   },
-  "homepage": "https://github.com/helderburato/node-rsr#readme"
+  "homepage": "https://github.com/helderburato/node-rsr#readme",
+  "dependencies": {
+    "sequelize": "^4.37.6"
+  }
 }
