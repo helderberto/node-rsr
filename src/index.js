@@ -78,9 +78,7 @@ class Rsr {
 
     ValidateRsr.isValid(params.id, errorValidate);
 
-    return model.findOne({
-      where: params
-    })
+    return model.findOne(params)
       .then((response) => {
         ValidateRsr.handleError(response, errorFind);
         return response;
