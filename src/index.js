@@ -76,8 +76,6 @@ class Rsr {
     const errorValidate = ValidateRsr.setAlert('save', validate);
     const errorFind = ValidateRsr.setAlert('find', error);
 
-    ValidateRsr.isValid(params.id, errorValidate);
-
     return model.findOne(params)
       .then((response) => {
         ValidateRsr.handleError(response, errorFind);
