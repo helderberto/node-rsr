@@ -1,6 +1,8 @@
-# RSR
+# 💫 RSR
 
 This is simple Node HTTP resource.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Requirements
 
@@ -62,9 +64,14 @@ static findOne(params) {
 
 Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
+# Change Log
 
-We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/helderburato/node-rsr/tags).
+This project adheres to [Semantic Versioning](https://semver.org/).
+Every release, along with the migration instructions, is documented on the Github [Releases](https://github.com/helderburato/node-rsr/releases) page.
+
+# Author
+
+[Helder Burato](https://twitter.com/helderburato)
 
 ## License
 
