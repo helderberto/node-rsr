@@ -1,3 +1,5 @@
+'use strict';
+
 const ValidateRsr = require('./validate');
 
 class Rsr {

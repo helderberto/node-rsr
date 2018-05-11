@@ -4,7 +4,14 @@
   "description": "The Node HTTP resource",
   "author": "Helder Burato Berto <helder.burato@gmail.com> (https://helderburato.com.br)",
   "homepage": "https://github.com/helderburato/node-rsr#readme",
-  "main": "index.js",
+  "main": "dist/rsr.js",
+  "umd:main": "dist/rsr.umd.js",
+  "module": "dist/rsr.m.js",
+  "source": "src/index.js",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch"
+  },
   "files": [
     "src"
   ],
@@ -25,5 +32,8 @@
   ],
   "bugs": {
     "url": "https://github.com/helderburato/node-rsr/issues"
+  },
+  "devDependencies": {
+    "microbundle": "0.4.4"
   }
 }
