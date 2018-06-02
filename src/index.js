@@ -1,19 +1,17 @@
 'use strict';
 
-const ValidateRsr = require('./validate');
-
 class Rsr {
 
   static save(model, options) {
     const { data, error, validate } = options;
-    const errorValidate = ValidateRsr.setAlert('save', validate);
-    const errorSave = ValidateRsr.setAlert('save', error);
+    const errorValidate = Rsr.setAlert('save', validate);
+    const errorSave = Rsr.setAlert('save', error);
 
-    ValidateRsr.isValid(data, errorValidate);
+    Rsr.isValid(data, errorValidate);
 
     return model.create(data)
       .then((response) => {
-        ValidateRsr.handleError(response, errorSave);
+        Rsr.handleError(response, errorSave);
         return response;
       })
       .catch((err) => {
@@ -25,13 +23,13 @@ class Rsr {
   static delete(model, options) {
     const { params, error, validate } = options;
 
-    ValidateRsr.isValid(params.id);
+    Rsr.isValid(params.id);
 
     return model.destroy({
       where: params
     })
       .then((response) => {
-        ValidateRsr.handleError(response, error);
+        Rsr.handleError(response, error);
         return response;
       })
       .catch((err) => {
@@ -43,13 +41,13 @@ class Rsr {
   static update(model, options) {
     const { params, error, validate, data } = options;
 
-    ValidateRsr.isValid(options.params, validate);
+    Rsr.isValid(options.params, validate);
 
     return model.update(data, {
       where: params
     })
       .then((response) => {
-        ValidateRsr.handleError(response, error);
+        Rsr.handleError(response, error);
         return response;
       })
       .catch(err => {
@@ -60,11 +58,11 @@ class Rsr {
 
   static findAll(model, options) {
     const { error, params } = options;
-    const errorFind = ValidateRsr.setAlert('find', error);
+    const errorFind = Rsr.setAlert('find', error);
 
     return model.findAll(params)
       .then((response) => {
-        ValidateRsr.handleError(response, errorFind);
+        Rsr.handleError(response, errorFind);
         return response;
       })
       .catch(err => {
@@ -75,18 +73,54 @@ class Rsr {
 
   static findOne(model, options) {
     const { error, params, validate } = options;
-    const errorValidate = ValidateRsr.setAlert('save', validate);
-    const errorFind = ValidateRsr.setAlert('find', error);
+    const errorValidate = Rsr.setAlert('save', validate);
+    const errorFind = Rsr.setAlert('find', error);
 
     return model.findOne(params)
       .then((response) => {
-        ValidateRsr.handleError(response, errorFind);
+        Rsr.handleError(response, errorFind);
         return response;
       })
       .catch(err => {
         console.error(err.message);
         return err;
       });
+  }
+
+  static isValid(data, message = '') {
+    const errorEmpty = Rsr.setAlert('empty', message);
+
+    if (!data) {
+      throw new Error(errorEmpty);
+      return;
+    }
+    return true;
+  }
+
+  static setAlert(type, message) {
+    const defaultAlert = {
+      validate: 'Verifique se os campos foram preenchidos corretamente.',
+      empty: 'Os campos devem ser preenchidos.',
+      delete: 'Não foi possível remover o cadastro.',
+      update: 'Não foi possível atualizar o cadastro',
+      save: 'Não foi possível efetuar o cadastro',
+      find: 'Sua consulta não retornou resultados.',
+    };
+
+    if (message) {
+      const alert = {};
+      alert[type] = message;
+      return alert[type];
+    }
+    return defaultAlert[type];
+  }
+
+  static handleError(response, error) {
+    if (!response) {
+      throw new Error(error);
+      return;
+    }
+    return true;
   }
 
 }
